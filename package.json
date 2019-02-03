@@ -1,0 +1,47 @@
+{
+  "name": "bractal-pkg",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/bractal.cjs.js",
+  "module": "dist/bractal.esm.js",
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "test": "jest --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@emotion/core": "^10.0.6",
+    "@emotion/styled-base": "^10.0.5",
+    "change-case": "^3.1.0",
+    "color": "^3.1.0",
+    "cuid": "^2.1.4",
+    "emotion-theming": "^10.0.6",
+    "faker": "^4.1.0",
+    "lodash": "^4.17.11",
+    "prop-types": "^15.6.2",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "react-media-query-hoc-with-context": "^1.0.6",
+    "react-spinners": "^0.5.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.3.0",
+    "@babel/plugin-proposal-optional-chaining": "^7.2.0",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-react": "^7.0.0",
+    "babel-plugin-module-resolver": "^3.1.3",
+    "jest": "^24.0.0",
+    "rollup": "^1.0.0",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-node-resolve": "^4.0.0"
+  }
+}
