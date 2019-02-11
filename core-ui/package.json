@@ -1,6 +1,6 @@
 {
-  "name": "bractal-pkg/core-ui",
+  "name": "bractal/core-ui",
   "private": true,
-  "main": "../dist/bractal-core-ui.cjs.js",
-  "module": "../dist/bractal-core-ui.esm.js"
+  "main": "../dist/coreUI.cjs.js",
+  "module": "../dist/coreUI.es.js"
 }

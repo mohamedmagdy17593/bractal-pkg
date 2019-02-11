@@ -94,9 +94,10 @@ const infereBoxColors = props => {
 }
 
 export const boxColorsStyles = props => css`
-  color: ${infereBoxColors(props).lineColor};
-  border-color: ${infereBoxColors(props).borderColor};
-  background-color: ${infereBoxColors(props).backgroundColor};
+  color: ${props.color || infereBoxColors(props).lineColor};
+  border-color: ${props.borderColor || infereBoxColors(props).borderColor};
+  background-color: ${props.backgroundColor ||
+    infereBoxColors(props).backgroundColor};
 `
 
 export const infereButtonColors = props => {
@@ -106,34 +107,47 @@ export const infereButtonColors = props => {
   return props.colors || modesColors(type, props.theme, props)[mode]
 }
 
-const colors = (props, darkRatio) => css`
-  color: ${darken(
-    props.color || infereButtonColors(props).lineColor,
-    darkRatio,
-  )};
-  background-color: ${darken(
-    props.backgroundColor || infereButtonColors(props).backgroundColor,
-    darkRatio,
-  )};
-  border-color: ${darken(
-    props.borderColor || infereButtonColors(props).borderColor,
-    darkRatio,
-  )};
-`
+const colors = (inferedColors, darkRatio) => ({
+  color: darken(inferedColors.lineColor, darkRatio),
+  backgroundColor: darken(inferedColors.backgroundColor, darkRatio),
+  borderColor: darken(inferedColors.borderColor, darkRatio),
+})
 
-export const colorStyles = props => css`
-  ${colors(props, 0)}
+export const colorStyles = props => {
+  const inferedColors = infereButtonColors(props)
+  return [
+    colors(inferedColors, 0),
+    {
+      '&:hover': colors(inferedColors, 0.05),
+      '&:active': colors(inferedColors, 0.1),
+      '&:focus': {
+        borderColor: darken(infereButtonColors(props).borderColor, 0.3),
+      },
+    },
+  ]
+  // css`
+  //   ${colors(inferedColors, 0)}
 
-  &:hover {
-    ${colors(props, 0.05)}
-  }
-  &:active {
-    ${colors(props, 0.1)}
-  }
-  &:focus {
-    border-color: ${darken(infereButtonColors(props).borderColor, 0.3)};
-  }
-`
+  //   &:hover {
+  //     color: ${darken(inferedColors.lineColor, 0.05)};
+  //     background-color: ${darken(inferedColors.backgroundColor, 0.05)};
+  //     border-color: ${darken(inferedColors.borderColor, 0.05)};
+  //   }
+  // ` ||
+  // css`
+  //   ${colors(props, 0)}
+
+  //   &:hover {
+  //     ${colors(props, 0.05)}
+  //   }
+  //   &:active {
+  //     ${colors(props, 0.1)}
+  //   }
+  //   &:focus {
+  //     border-color: ${darken(infereButtonColors(props).borderColor, 0.3)};
+  //   }
+  // `
+}
 
 export const disabledColorStyles = props => css`
   ${colors(props, 0)}

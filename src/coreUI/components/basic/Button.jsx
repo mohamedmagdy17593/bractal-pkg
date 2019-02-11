@@ -26,17 +26,15 @@ import {
 import spaceStyles from '~/coreUI/utils/styleSystem'
 
 import Icon from '~/coreUI/components/basic/Icon'
-import {
-  Row,
-  Box,
-} from '~/coreUI/components/layouts/helpers/LinearLayout'
-
-const ButtonContent = styled(Row)`
-  /* white-space: nowrap; */
-`
+import {Row, Box} from '~/coreUI/components/layouts/helpers/LinearLayout'
 
 // Must be of relative position for the loading icon to be drawn correctly
 const StyledButton = styled.button`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+
   ${props =>
     responsiveStyle(
       props,
@@ -77,7 +75,12 @@ const StyledButton = styled.button`
   cursor: pointer;
 
   ${props => spaceStyles(props)}
-  ${props => (props.disabled ? disabledColorStyles(props) : colorStyles(props))}
+  ${disabledColorStyles}
+  /* ${css`
+    color: red;
+    background-color: red;
+    border-color: red;
+  `} */
 `
 
 const LoaderContainer = styled.div`
@@ -127,10 +130,10 @@ class InnerButton extends React.Component {
   componentDidMount = () => {
     // FIXME : The reason for the following work around, is that onClick would be called on the
     //         External component first, and thus causes the onClick being called twice
-    assert(
-      !this.props.onClick,
-      "onClick shouldn't be used on BasicButton, use onClicked instead",
-    )
+    // assert(
+    //   !this.props.onClick,
+    //   "onClick shouldn't be used on BasicButton, use onClicked instead",
+    // )
   }
 
   onClick = e => {
@@ -140,44 +143,12 @@ class InnerButton extends React.Component {
   }
 
   render = () => (
-    <ButtonContainer block={this.props.block}>
-      <StyledButton
-        {..._.omit(this.props, ['onClicked'])}
-        onClick={e => this.onClick(e)}
-      >
-        <ButtonContent
-          centerJustified
-          centerAligned
-          spaceBetween={
-            infereIntraSpacingSize(this.props) / this.props.theme.new.spacer
-          }
-          {...propsForPrefix(this.props, 'buttonContent_')}
-        >
-          {this.props.iconName && (
-            <Icon
-              className={this.props.iconName}
-              {...propsForPrefix(this.props, 'iconBefore_')}
-            />
-          )}
-          {this.props.icon && this.props.icon}
-          {this.props.children}
-          {this.props.iconAfterName && (
-            <Icon
-              className={this.props.iconAfterName}
-              {...propsForPrefix(this.props, 'iconAfter_')}
-            />
-          )}
-          {this.props.iconAfter && this.props.iconAfter}
-        </ButtonContent>
-      </StyledButton>
-      {this.props.loading && (
-        <LoaderContainer {..._.omit(this.props, ['onClicked'])}>
-          <Box fullWidth fullHeight>
-            <PulseLoader size={2} className="buttonLoader" />
-          </Box>
-        </LoaderContainer>
-      )}
-    </ButtonContainer>
+    <StyledButton
+      {..._.omit(this.props, ['onClicked'])}
+      onClick={e => this.onClick(e)}
+    >
+      {this.props.children}
+    </StyledButton>
   )
 }
 
@@ -185,19 +156,6 @@ InnerButton.propTypes = PropTypes.shape({
   iconName: PropTypes.string.isRequired,
 }).isRequired
 
-const Button = withMedia(
-  withTheme(props =>
-    process.isStyleguidistActive ? (
-      <InnerButton
-        {...props}
-        title={responsiveStyle(props, 'size', size =>
-          infereFontSize(props, size),
-        )}
-      />
-    ) : (
-      <InnerButton {...props} />
-    ),
-  ),
-)
+const Button = props => <InnerButton {...props} />
 
 export default Button

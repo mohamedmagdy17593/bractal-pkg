@@ -1,6 +1,6 @@
 {
-  "name": "bractal-pkg/core",
+  "name": "bractal/core",
   "private": true,
-  "main": "../dist/bractal-core.cjs.js",
-  "module": "../dist/bractal-core.esm.js"
+  "main": "../dist/core.cjs.js",
+  "module": "../dist/core.es.js"
 }

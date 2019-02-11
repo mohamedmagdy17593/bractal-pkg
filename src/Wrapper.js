@@ -6,14 +6,17 @@ import {LinearLayout} from '~/coreUI/components/layouts/helpers/LinearLayout'
 import MediaProvider from '~/core/utils/mediaHelpers/MediaProvider'
 
 function Wrapper({children, theme = Theme}) {
+  console.log('hola')
   return (
-    <ThemeProvider theme={theme}>
-      <MediaProvider>
+    <div>
+      <ThemeProvider theme={theme}>
+        {/* <MediaProvider> */}
         <LinearLayout row leftJustified topAligned>
           {children}
         </LinearLayout>
-      </MediaProvider>
-    </ThemeProvider>
+        {/* </MediaProvider> */}
+      </ThemeProvider>
+    </div>
   )
 }
 

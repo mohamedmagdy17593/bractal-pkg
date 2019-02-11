@@ -1,0 +1,120 @@
+{
+  "config": {
+    "title": "Bractal",
+    "description": "My awesome app using docz",
+    "menu": [],
+    "ordering": "descending",
+    "version": "1.0.0",
+    "repository": null,
+    "native": false,
+    "codeSandbox": true,
+    "themeConfig": {},
+    "wrapper": "docs/wrapper"
+  },
+  "entries": {
+    "docs/Home.mdx": {
+      "name": "Home",
+      "route": "/",
+      "id": "f3241200b3e85b3b919f9d8df3bf19ca",
+      "filepath": "docs/Home.mdx",
+      "link": null,
+      "slug": "docs-home",
+      "order": 0,
+      "menu": null,
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "hello-world",
+          "value": "Hello World"
+        }
+      ]
+    },
+    "docs/coreUI/Button.mdx": {
+      "name": "Buttons",
+      "menu": "Components",
+      "id": "d8301028df6b878bf4bc503372869ee7",
+      "filepath": "docs/coreUI/Button.mdx",
+      "link": null,
+      "slug": "docs-core-ui-button",
+      "route": "/docs-core-ui-button",
+      "order": 0,
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "button",
+          "value": "Button"
+        },
+        {
+          "depth": 3,
+          "slug": "basic-example",
+          "value": "Basic Example"
+        },
+        {
+          "depth": 3,
+          "slug": "sizing",
+          "value": "Sizing"
+        },
+        {
+          "depth": 3,
+          "slug": "types",
+          "value": "Types"
+        },
+        {
+          "depth": 3,
+          "slug": "fill",
+          "value": "Fill"
+        },
+        {
+          "depth": 3,
+          "slug": "disabled-state",
+          "value": "Disabled State"
+        },
+        {
+          "depth": 3,
+          "slug": "corners",
+          "value": "Corners"
+        },
+        {
+          "depth": 3,
+          "slug": "loading-icon",
+          "value": "Loading Icon"
+        },
+        {
+          "depth": 3,
+          "slug": "arbitrary-icon",
+          "value": "Arbitrary Icon"
+        },
+        {
+          "depth": 3,
+          "slug": "label-style",
+          "value": "Label Style"
+        },
+        {
+          "depth": 3,
+          "slug": "using-size-prop",
+          "value": "Using size prop"
+        },
+        {
+          "depth": 3,
+          "slug": "responsive-button-size",
+          "value": "Responsive button size"
+        },
+        {
+          "depth": 3,
+          "slug": "padding-customizations",
+          "value": "Padding customizations"
+        },
+        {
+          "depth": 4,
+          "slug": "normal-tight-custom",
+          "value": "Normal, tight, custom"
+        },
+        {
+          "depth": 4,
+          "slug": "full-width",
+          "value": "Full Width"
+        }
+      ]
+    }
+  }
+}
