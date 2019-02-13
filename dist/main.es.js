@@ -577,7 +577,6 @@ function Wrapper({
   children,
   theme = defaultTheme
 }) {
-  console.log('hola');
   return React.createElement("div", null, React.createElement(ThemeProvider, {
     theme: theme
   }, React.createElement(LinearLayout, {

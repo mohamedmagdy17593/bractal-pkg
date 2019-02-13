@@ -5,12 +5,13 @@
   "main": "dist/main.cjs.js",
   "module": "dist/main.es.js",
   "scripts": {
-    "build": "rollup -c && node scripts/clearSourceMap.js",
+    "build": "rollup -c",
     "dev": "rollup -c -w",
     "test": "jest --watch",
     "lint": "eslint ./",
     "docz:dev": "docz dev",
-    "docz:build": "docz build"
+    "docz:build": "docz build",
+    "setup": "npm run build && npm link && npm link bractal"
   },
   "keywords": [],
   "author": "",

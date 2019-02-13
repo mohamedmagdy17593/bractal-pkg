@@ -6,7 +6,6 @@ import {LinearLayout} from '~/coreUI/components/layouts/helpers/LinearLayout'
 import MediaProvider from '~/core/utils/mediaHelpers/MediaProvider'
 
 function Wrapper({children, theme = Theme}) {
-  console.log('hola')
   return (
     <div>
       <ThemeProvider theme={theme}>

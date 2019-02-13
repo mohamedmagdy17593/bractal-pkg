@@ -2,7 +2,6 @@
 import {jsx, keyframes} from '@emotion/core'
 
 import styled from '@emotion/styled'
-import {css} from '@emotion/core'
 import PropTypes from 'prop-types'
 
 import {FaSpinner} from 'react-icons/fa'
@@ -10,21 +9,21 @@ import {FaSpinner} from 'react-icons/fa'
 import * as R from 'ramda'
 import Color from 'color'
 
-import classNames from 'classnames'
+// import classNames from 'classnames'
 
-import {
-  // darken,
-  infereButtonColors,
-  responsiveStyle,
-  infereIntraSpacingSize,
-  infereFontWeight,
-  propsForPrefix,
-  infereFontSize,
-  inferePaddingSize,
-  infereBorderRadius,
-  colorStyles,
-  disabledColorStyles,
-} from '~/coreUI/utils/infereStyle'
+// import {
+//   // darken,
+//   infereButtonColors,
+//   responsiveStyle,
+//   infereIntraSpacingSize,
+//   infereFontWeight,
+//   propsForPrefix,
+//   infereFontSize,
+//   inferePaddingSize,
+//   infereBorderRadius,
+//   colorStyles,
+//   disabledColorStyles,
+// } from '~/coreUI/utils/infereStyle'
 
 const darken = R.curry((color, ratio) =>
   Color(color)
@@ -75,71 +74,63 @@ const btnSize = ({size = 'md', px = 1, tight}) => {
     padding: `${space * ratio}px ${space * 2 * px * ratio}px`,
     lineHeight: `${1.5 * font}px`,
   }
-  // css`
-  //   font-size: ${font}px;
-  //   padding: ${space * ratio}px ${space * 2 * px * ratio}px;
-  //   line-height: ${1.5 * font}px;
-  // `
 }
 
-// const appearanceTypes = {
-//   success: '#11cc00',
-//   danger: '#dd1010',
-//   primary: '#45b1e5',
-//   warning: '#ffe52b',
-//   info: '#6bddef',
-// }
+const appearanceTypes = {
+  success: '#11cc00',
+  danger: '#dd1010',
+  primary: '#45b1e5',
+  warning: '#ffe52b',
+  info: '#6bddef',
+}
 
-// const btnAppearance = ({appearance = 'primary', outline, active, disabled}) => {
-//   const color = appearanceTypes[appearance]
-//   return css`
-//     color: white;
-//     background-color: ${color};
-//     border: 1px solid ${color};
-//     ${!disabled &&
-//       css`
-//         &:hover {
-//           background-color: ${darken(color, 0.15)};
-//         }
-//       `};
+const btnAppearance = ({appearance = 'primary', outline, active, disabled}) => {
+  const color = appearanceTypes[appearance]
+  return [
+    {
+      color: 'white',
+      backgroundColor: color,
+      border: `1px solid ${color}`,
+    },
 
-//     ${outline &&
-//       css`
-//         background-color: white;
-//         border: 1px solid ${color};
-//         color: ${color};
-//         &:hover {
-//           color: white;
-//         }
-//       `};
+    !disabled && {
+      '&:hover': {backgroundColor: darken(color, 0.15)},
+    },
 
-//     ${active &&
-//       css`
-//         background-color: ${darken(color, 0.15)};
-//         ${outline &&
-//           css`
-//             background-color: ${color};
-//             color: white;
-//           `}
-//       `};
+    outline && {
+      backgroundColor: 'white',
+      border: `1px solid ${color}`,
+      color: color,
+      '&:hover': {
+        color: 'white',
+      },
+    },
 
-//     ${disabled &&
-//       css`
-//         cursor: not-allowed;
-//         background-color: ${lighten(color, 0.3)};
-//         border: 1px solid ${lighten(color, 0.3)};
-//         ${outline &&
-//           css`
-//             cursor: not-allowed;
-//             background-color: white;
-//             color: ${lighten(color, 0.3)};
-//             &:hover {
-//               background-color: #fcfcfc;
-//             }
-//           `}
-//       `};
-//   `
-// }
+    active && [
+      {backgroundColor: darken(color, 0.15)},
+      outline && {
+        backgroundColor: color,
+        color: 'white',
+      },
+    ],
+
+    disabled && [
+      {
+        cursor: 'not-allowed',
+        backgroundColor: lighten(color, 0.3),
+        border: `1px solid ${lighten(color, 0.3)}`,
+      },
+      outline && {
+        cursor: 'not-allowed',
+        backgroundColor: 'white',
+        color: lighten(color, 0.3),
+        '&:hover': {
+          backgroundColor: '#fcfcfc',
+        },
+      },
+    ],
+  ]
+}
 
 const fullRound = {
   borderRadius: 999,
@@ -147,17 +138,12 @@ const fullRound = {
 
 const btnRound = ({round}) => round && fullRound
 
-// const StyledButton = styled.button`
-//   ${btn}
-//   ${btnSize}
-// `
-
 const StyledButton = styled.button(
   btn,
   btnBlock,
   btnSize,
   btnRound,
-  colorStyles,
+  btnAppearance,
 )
 
 const OverCenterSpan = styled.span({
